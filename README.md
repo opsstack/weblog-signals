@@ -27,13 +27,13 @@ weblogmetric [-f logfile] [-m metric] [-b] [-e pattern] [-v] [-h]
 We are not ready for contributors until we can get the code cleaned up and standardized for Go best practices.
 
 However, you can contribute by:
-- [Report bugs](https://github.com/opsstack/runqstat/issues/new)
-- [Improve documentation](https://github.com/opsstack/runqstat/issues?q=is%3Aopen+label%3Adocumentation)
-- [Review code and feature proposals](https://github.com/opsstack/runqstat/pulls)
+- [Report bugs](https://github.com/opsstack/weblog-signals/issues/new)
+- [Improve documentation](https://github.com/opsstack/weblog-signals/issues?q=is%3Aopen+label%3Adocumentation)
+- [Review code and feature proposals](https://github.com/opsstack/weblog-signals/pulls)
 
 ## Installation:
 
-You can download the binaries directly from the [binaries](https://github.com/opsstack/runqstat/binaries) section.  We'll have RPMs and DEB packages as soon as things stabilize a bit.
+You can download the binaries directly from the [binaries](https://github.com/opsstack/weblog-signals/binaries) section.  We'll have RPMs and DEB packages as soon as things stabilize a bit.
 
 ### From Source:
 
