@@ -1,0 +1,50 @@
+." Man page for runqstat
+
+.TH mysql-signals 1 "04 Feb 2018" "0.1" "mysql-signals man page"
+
+.SH NAME
+mysql-signals \- monitor MySQL Golden Signals
+
+.SH SYNOPSIS
+mysql-signals [-S server] [-P port] [-u user] [-p password] [-c credential file] [-m metric] [-v] [-h]
+
+.SH DESCRIPTION
+mysql-signals is a tool to calculate the query Rate, Latency, and Errors over a time interval.
+
+mysql-signals connects to a MySQL instance and queries it for the data.  Since MySQL provides only counters,
+the tool store the data between runs in a status file.  When it runs again, it will read the status and compare,
+usually subtracting the latest data from stored status to give results on a per-second basis.
+
+The options are as follows:
+
+       -S      MySQL Server, DNS name or IP. deafult 127.0.0.1
+       -P      MySQL Port, default 3306
+       -u      MySQL user
+       -p      MySQL password
+       -c      Credential file name (with username on first line and password on second line)
+       -s      Status file name, for storing last run time and counters, default 'status.file'
+       -m      Metric to produce: (r)ate, (e)errors, (l)atency
+       -v      Verbose, for debugging and more info. Default off.
+       -h      Help and usage.
+
+.SH EXAMPLES
+
+runqstat -S 10.20.30.40 -u my.user -p the.password -s status.file -m r
+         Display the rate metric from this database, using that user and password
+
+runqstat -S 10.20.30.40 -s status.file -m l
+         Prompt for user and password, and display the latency metric
+
+runqstat -S 10.20.30.40 -c cred.file -s status.file -m e
+         Use user and password from the cred.file, and display the error metric
+
+.SH SEE ALSO
+
+.SH BUGS
+No known bugs.
+
+.SH AUTHOR
+Steve Mushero (steve.mushero@opsstack.io)
+
+.SH COPYRIGHT
+Copyright © 2018 OpsStack License GPLv2 - <http://gnu.org/licenses/gpl.html>
