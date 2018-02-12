@@ -255,7 +255,8 @@ func Combined(line string) (*Entry, error) {
 	if ref != `-` {
 		e.Referer, err = url.ParseRequestURI(ref)
 		if err != nil {
-			return nil, err
+			// Don't care if we get invalid URI here
+			//			return nil, err
 		}
 	}
 
@@ -270,35 +271,35 @@ func Combined(line string) (*Entry, error) {
 	e.UserAgent = uas
 
 	// Commenting out as getting other another way in the main loop
-/*
-	// X-Forwarded-For - not used, but need to parse
-	l.p++ // Add one; not clear why
-	err = expect(l, '"')
-	if err != nil {
-		return nil, err
-	}
-	xff, err := nextField(l, `"`)
-	if err != nil {
-		return nil, err
-	}
-	e.XForwardedFor = xff
+	/*
+		// X-Forwarded-For - not used, but need to parse
+		l.p++ // Add one; not clear why
+		err = expect(l, '"')
+		if err != nil {
+			return nil, err
+		}
+		xff, err := nextField(l, `"`)
+		if err != nil {
+			return nil, err
+		}
+		e.XForwardedFor = xff
 
 
-	// Get ResponseTime
-	l.p++ // Add one; not clear why
-	rt, err := nextField(l, " ")
-	if err != nil {
-		//return nil, err
-		// If last field have to return text, not error as no final separator on line
-		rt = l.s[l.p:]
-	}
-	if len(string(rt)) > 0 {
-		e.ResponseTime, err = strconv.ParseFloat(rt, 64)
-	}
-	if err != nil {
-		return nil, err
-	}
-*/
+		// Get ResponseTime
+		l.p++ // Add one; not clear why
+		rt, err := nextField(l, " ")
+		if err != nil {
+			//return nil, err
+			// If last field have to return text, not error as no final separator on line
+			rt = l.s[l.p:]
+		}
+		if len(string(rt)) > 0 {
+			e.ResponseTime, err = strconv.ParseFloat(rt, 64)
+		}
+		if err != nil {
+			return nil, err
+		}
+	*/
 
 	return e, nil
 }

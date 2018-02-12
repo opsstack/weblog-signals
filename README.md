@@ -1,4 +1,4 @@
-# WebLogMetric
+# WebLogSignals
 Golden Web Log Metric Tool
 
 This is a Linux command-line tool written in Go for collecting stats from HTTP web logs, using the combined format PLUS response time.

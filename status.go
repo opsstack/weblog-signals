@@ -9,6 +9,12 @@ import (
 	"strings"
 )
 
+// Fileformat is 4 lines of last log line read, one for each mode:
+//	Count mode
+//  Rate mode
+//  Error mode
+//  Latency mode
+
 // Read last run info from saved file
 func getLastRunInfo(statusFileName string) (int64, [4]int64, error) {
 
@@ -58,6 +64,7 @@ func getLastRunInfo(statusFileName string) (int64, [4]int64, error) {
 		}
 		lastRunLine = 0 // Set zero if no file or error
 	}
+	// Returns last line for real use and last array so we can write unchanged data back out when done
 	return lastRunLine, last, nil
 }
 
@@ -75,6 +82,7 @@ func saveLastRunInfo(statusFile string, lastRunLine int64, last [4]int64) (error
 	fw, err = os.Create(statusFile)
 	check(err)
 
+	// Update data to change, leave rest unchanged so we can write back out to file
 	switch argStatsMetric {
 	case "c":
 		last[0] = lastRunLine

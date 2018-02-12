@@ -147,7 +147,11 @@ func main() {
 				(len(string(argExcludes)) > 0 && !strings.Contains(line, argExcludes)) {
 
 				l, err = Combined(line)
-				check(err)
+				// This will abort on any error; may want to be more forgiving here and just go to next line
+				//check(err)
+				if err != nil {
+					continue
+				}
 
 				// Get the last value
 				fields := strings.Fields(line) // Split on spaces
@@ -212,8 +216,8 @@ func main() {
 		avgResponseTime = sumResponseTime / float64(counter200Lines)
 		rate = counter200Lines / duration
 	} else {
-		avgResponseTime = -1
-		rate = -1
+		avgResponseTime = 0
+		rate = 0
 	}
 
 	// Output
@@ -281,6 +285,11 @@ argsCheck(version string, copyright string) {
 		os.Exit(1)
 	}
 
+	// Require metric type
+	if argStatsMetric == "" {
+		log.Fatalln("Stats Metric missing - should be c, e, l")
+		os.Exit(1)
+	}
 	if argStatsMetric != "c" && argStatsMetric != "r" && argStatsMetric != "e" && argStatsMetric != "l" {
 		log.Fatalln("Stats Metric not valid - should be c, e, l")
 		os.Exit(1)
