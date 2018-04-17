@@ -8,13 +8,14 @@ package main
 import (
 	"bufio"
 	"fmt"
-	flag "github.com/ogier/pflag"
 	"io"
 	"log"
 	"os"
 	"strconv"
 	"strings"
 	"time"
+
+	flag "github.com/ogier/pflag"
 )
 
 // constants
@@ -177,7 +178,7 @@ func main() {
 				}
 
 			} else {
-				counterExcluded ++
+				counterExcluded++
 			}
 		} // Non-blank lines
 	} // Good line scanner loop
@@ -193,10 +194,9 @@ func main() {
 		fmt.Printf("Count Status 3xx: %d\n", counter300Lines)
 		fmt.Printf("Count Status 4xx: %d\n", counter400Lines)
 		fmt.Printf("Count Errors (5xx): %d\n", counterErrorLines)
+		fmt.Printf("First Scanned line time: %s\n", firstLineTime.Format(time.UnixDate))
+		fmt.Printf("Last Scanned line time: %s\n\n", lastLineTime.Format(time.UnixDate))
 	}
-
-	fmt.Printf("First Scanned line time: %s\n", firstLineTime.Format(time.UnixDate))
-	fmt.Printf("Last Scanned line time: %s\n\n", lastLineTime.Format(time.UnixDate))
 
 	// Update run status info to file
 	//endTimeStamp := time.Now().Unix() // Epoch time
@@ -274,8 +274,7 @@ func main() {
 } // Main
 
 // Process arguments
-func
-argsCheck(version string, copyright string) {
+func argsCheck(version string, copyright string) {
 
 	if flagHelp {
 		fmt.Printf("GoldenWebReader Version %s - %s\n\n", version, copyright)
